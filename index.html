@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>روح الإيمان</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary-color: #2e7d32;
+            --primary-light: #4caf50;
+            --primary-dark: #1b5e20;
+            --secondary-color: #0288d1;
+            --secondary-light: #03a9f4;
+            --secondary-dark: #01579b;
+            --text-color: #333;
+            --text-light: #666;
+            --bg-color: #f9f9f9;
+            --card-bg: #ffffff;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --radius: 16px;
+            --transition: all 0.3s ease;
+        }
+
+        /* Dark Mode Variables */
+        .dark-mode {
+            --primary-color: #388e3c;
+            --primary-light: #4caf50;
+            --primary-dark: #1b5e20;
+            --secondary-color: #0288d1;
+            --secondary-light: #03a9f4;
+            --secondary-dark: #01579b;
+            --text-color: #f0f0f0;
+            --text-light: #b0b0b0;
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: var(--transition);
+            padding-bottom: 70px; /* Space for bottom navigation */
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .logo-icon {
+            font-size: 1.8rem;
+        }
+
+        .theme-toggle {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Main Content */
+        main {
+            padding: 20px 0;
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Card Styles */
+        .card {
+            background-color: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-title i {
+            font-size: 1.4rem;
+        }
+
+        /* Home Page */
+        .hero-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .hero-title {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .hero-subtitle {
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .action-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            padding: 15px;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 600;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .action-btn i {
+            font-size: 1.5rem;
+        }
+
+        /* Prayer Times */
+        .prayer-form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .prayer-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--radius);
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+        }
+
+        .prayer-submit {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            padding: 0 20px;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .prayer-submit:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .prayer-times {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 15px;
+        }
+
+        .prayer-time {
+            background: linear-gradient(135deg, var(--secondary-color), var(--secondary-light));
+            color: white;
+            border-radius: var(--radius);
+            padding: 15px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .prayer-time:hover {
+            transform: scale(1.05);
+        }
+
+        .prayer-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .prayer-hour {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .azan-btn {
+            background-color: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            margin: 10px auto 0;
+            transition: var(--transition);
+        }
+
+        .azan-btn:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Azkar & Tasbeeh */
+        .azkar-categories {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+        }
+
+        .azkar-category {
+            background-color: var(--card-bg);
+            border: 1px solid #ddd;
+            border-radius: var(--radius);
+            padding: 10px 15px;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .azkar-category.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .azkar-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .azkar-item {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            transition: var(--transition);
+        }
+
+        .azkar-item:last-child {
+            border-bottom: none;
+        }
+
+        .azkar-item:hover {
+            background-color: rgba(0, 0, 0, 0.02);
+        }
+
+        .azkar-text {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .azkar-count {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .count-btn {
+            background-color: var(--primary-light);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .count-btn:hover {
+            background-color: var(--primary-color);
+        }
+
+        .count-number {
+            font-weight: 600;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .tasbeeh-counter {
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        .tasbeeh-count {
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin: 20px 0;
+        }
+
+        .tasbeeh-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .tasbeeh-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .tasbeeh-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .control-btn {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            padding: 10px 20px;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .control-btn:hover {
+            background-color: var(--secondary-dark);
+        }
+
+        /* Pray For Me */
+        .pray-form {
+            margin-bottom: 20px;
+        }
+
+        .pray-textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--radius);
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            resize: vertical;
+            min-height: 120px;
+            margin-bottom: 15px;
+        }
+
+        .pray-submit {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            padding: 12px 25px;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .pray-submit:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .prayers-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .prayer-item {
+            background-color: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .prayer-content {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .prayer-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .amen-btn {
+            background-color: var(--secondary-light);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 5px 15px;
+            font-family: 'Cairo', sans-serif;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .amen-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Telawat */
+        .search-box {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--radius);
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            margin-bottom: 20px;
+        }
+
+        .telawat-list {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+
+        .telawat-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .telawat-item:hover {
+            background-color: rgba(0, 0, 0, 0.02);
+        }
+
+        .telawat-item.active {
+            background-color: rgba(46, 125, 50, 0.1);
+            border-right: 3px solid var(--primary-color);
+        }
+
+        .telawat-name {
+            font-weight: 600;
+        }
+
+        .telawat-duration {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .audio-player {
+            background-color: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 15px;
+            box-shadow: var(--shadow);
+            position: sticky;
+            bottom: 80px;
+            z-index: 10;
+        }
+
+        .player-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .player-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .player-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .player-btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .player-info {
+            flex: 1;
+        }
+
+        .player-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 5px;
+            background-color: #eee;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .progress {
+            height: 100%;
+            background-color: var(--primary-color);
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        /* Stories */
+        .stories-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .story-item {
+            background-color: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .story-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+        }
+
+        .story-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .story-content {
+            margin-bottom: 15px;
+            line-height: 1.6;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .story-audio {
+            background-color: var(--secondary-light);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            padding: 8px 15px;
+            font-family: 'Cairo', sans-serif;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 10px;
+        }
+
+        .story-audio:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--card-bg);
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            z-index: 100;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+            padding: 5px 10px;
+            border-radius: var(--radius);
+            flex: 1;
+            max-width: 80px;
+        }
+
+        .nav-item.active {
+            color: var(--primary-color);
+        }
+
+        .nav-item i {
+            font-size: 1.2rem;
+        }
+
+        .nav-item span {
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--card-bg);
+            padding: 20px 0;
+            text-align: center;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+            margin-top: 30px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .quick-actions {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+            
+            .prayer-times {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+            
+            .stories-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .quick-actions {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .prayer-form {
+                flex-direction: column;
+            }
+            
+            .tasbeeh-btn {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .tasbeeh-count {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">🕌</div>
+                    <h1>روح الإيمان</h1>
+                </div>
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Home Page -->
+        <section id="home" class="page active">
+            <div class="hero-section">
+                <h2 class="hero-title">مرحبًا بك في روح الإيمان</h2>
+                <p class="hero-subtitle">رفيقك اليومي في رحلة الإيمان والطاعة</p>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-book-quran"></i> آية اليوم</h3>
+                <p id="ayahText">اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ</p>
+                <p id="ayahSource" class="text-muted">سورة البقرة: 255</p>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-quote-right"></i> حديث اليوم</h3>
+                <p id="hadithText">الدال على الخير كفاعله</p>
+                <p id="hadithSource" class="text-muted">صحيح الترمذي</p>
+            </div>
+
+            <div class="quick-actions">
+                <button class="action-btn" data-page="prayer">
+                    <i class="fas fa-clock"></i>
+                    <span>أوقات الصلاة</span>
+                </button>
+                <button class="action-btn" data-page="azkar">
+                    <i class="fas fa-pray"></i>
+                    <span>الأذكار</span>
+                </button>
+                <button class="action-btn" data-page="tasbeeh">
+                    <i class="fas fa-hands-praying"></i>
+                    <span>التسبيح</span>
+                </button>
+                <button class="action-btn" data-page="prayForMe">
+                    <i class="fas fa-hands"></i>
+                    <span>ادعيلي</span>
+                </button>
+                <button class="action-btn" data-page="telawat">
+                    <i class="fas fa-quran"></i>
+                    <span>التلاوات</span>
+                </button>
+                <button class="action-btn" data-page="stories">
+                    <i class="fas fa-book-open"></i>
+                    <span>قصص دينية</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Prayer Times Page -->
+        <section id="prayer" class="page">
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-clock"></i> أوقات الصلاة</h3>
+                <div class="prayer-form">
+                    <input type="text" class="prayer-input" id="cityInput" placeholder="أدخل اسم مدينتك">
+                    <button class="prayer-submit" id="prayerSubmit">عرض الأوقات</button>
+                </div>
+                <div class="prayer-times" id="prayerTimes">
+                    <!-- Prayer times will be generated here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Azkar Page -->
+        <section id="azkar" class="page">
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-pray"></i> الأذكار</h3>
+                <div class="azkar-categories" id="azkarCategories">
+                    <!-- Categories will be generated here -->
+                </div>
+                <div class="azkar-list" id="azkarList">
+                    <!-- Azkar will be generated here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Tasbeeh Page -->
+        <section id="tasbeeh" class="page">
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-hands-praying"></i> عداد التسبيح</h3>
+                <div class="tasbeeh-counter">
+                    <button class="tasbeeh-btn" id="tasbeehBtn">سبحان الله</button>
+                    <div class="tasbeeh-count" id="tasbeehCount">0</div>
+                    <div class="tasbeeh-controls">
+                        <button class="control-btn" id="resetTasbeeh">تصفير</button>
+                        <button class="control-btn" id="changeDhikr">تغيير الذكر</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pray For Me Page -->
+        <section id="prayForMe" class="page">
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-hands"></i> ادعيلي</h3>
+                <div class="pray-form">
+                    <textarea class="pray-textarea" id="prayText" placeholder="اكتب دعاءك هنا — هيفضل مجهول"></textarea>
+                    <button class="pray-submit" id="praySubmit">إرسال الدعاء</button>
+                </div>
+                <div class="prayers-list" id="prayersList">
+                    <!-- Prayers will be generated here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Telawat Page -->
+        <section id="telawat" class="page">
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-quran"></i> التلاوات القرآنية</h3>
+                <input type="text" class="search-box" id="telawatSearch" placeholder="ابحث عن تلاوة...">
+                <div class="telawat-list" id="telawatList">
+                    <!-- Telawat will be generated here -->
+                </div>
+            </div>
+            <div class="audio-player" id="audioPlayer" style="display: none;">
+                <div class="player-controls">
+                    <button class="player-btn" id="prevBtn">
+                        <i class="fas fa-backward"></i>
+                    </button>
+                    <button class="player-btn" id="playPauseBtn">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <button class="player-btn" id="nextBtn">
+                        <i class="fas fa-forward"></i>
+                    </button>
+                    <div class="player-info">
+                        <div class="player-title" id="playerTitle">اسم التلاوة</div>
+                        <div class="progress-bar">
+                            <div class="progress" id="progress"></div>
+                        </div>
+                    </div>
+                </div>
+                <audio id="audioElement" preload="metadata"></audio>
+            </div>
+        </section>
+
+        <!-- Stories Page -->
+        <section id="stories" class="page">
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-book-open"></i> قصص دينية</h3>
+                <div class="stories-list" id="storiesList">
+                    <!-- Stories will be generated here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <div class="nav-item active" data-page="home">
+            <i class="fas fa-home"></i>
+            <span>الرئيسية</span>
+        </div>
+        <div class="nav-item" data-page="azkar">
+            <i class="fas fa-pray"></i>
+            <span>الأذكار</span>
+        </div>
+        <div class="nav-item" data-page="telawat">
+            <i class="fas fa-quran"></i>
+            <span>التلاوات</span>
+        </div>
+        <div class="nav-item" data-page="prayForMe">
+            <i class="fas fa-hands"></i>
+            <span>ادعيلي</span>
+        </div>
+        <div class="nav-item" data-page="stories">
+            <i class="fas fa-book-open"></i>
+            <span>المزيد</span>
+        </div>
+    </nav>
+
+    <footer>
+        <div class="container">
+            <p>By SantaDevX | @santamodder | واتس: 01500461923 | Discord: https://discord.gg/YdgenTvN</p>
+        </div>
+    </footer>
+
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <script>
+        // Data (in a real app, this would be in separate JSON files)
+        const data = {
+            ayah: {
+                text: "اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ",
+                source: "سورة البقرة: 255",
+                tafseer: "آية الكرسي، تذكّر المسلم بعظمة الله وقدرته."
+            },
+            hadith: {
+                text: "الدال على الخير كفاعله",
+                source: "صحيح الترمذي",
+                explain: "من أرشد إلى الخير نال مثل أجر فاعله."
+            },
+            azkar: [
+                {
+                    title: "أذكار الصباح",
+                    items: [
+                        { text: "أصبحنا وأصبح الملك لله، والحمد لله، لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير.", count: 1 },
+                        { text: "اللهم بك أصبحنا، وبك أمسينا، وبك نحيا، وبك نموت، وإليك النشور.", count: 1 },
+                        { text: "سبحان الله وبحمده: مائة مرة.", count: 100 },
+                        { text: "لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير.", count: 10 }
+                    ]
+                },
+                {
+                    title: "أذكار المساء",
+                    items: [
+                        { text: "أمسينا وأمسى الملك لله، والحمد لله، لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير.", count: 1 },
+                        { text: "اللهم بك أمسينا، وبك أصبحنا، وبك نحيا، وبك نموت، وإليك المصير.", count: 1 },
+                        { text: "أعوذ بكلمات الله التامات من شر ما خلق.", count: 3 },
+                        { text: "بسم الله الذي لا يضر مع اسمه شيء في الأرض ولا في السماء وهو السميع العليم.", count: 3 }
+                    ]
+                },
+                {
+                    title: "أذكار النوم",
+                    items: [
+                        { text: "باسمك اللهم أموت وأحيا.", count: 1 },
+                        { text: "اللهم أسلمت نفسي إليك، ووجهت وجهي إليك، وفوضت أمري إليك، وألجأت ظهري إليك، رغبة ورهبة إليك، لا ملجأ ولا منجا منك إلا إليك.", count: 1 },
+                        { text: "سبحان الله (33 مرة)، الحمد لله (33 مرة)، الله أكبر (34 مرة).", count: 100 },
+                        { text: "آية الكرسي.", count: 1 }
+                    ]
+                }
+            ],
+            telawat: [
+                { name: "سورة الفاتحة - مشاري العفاسي", url: "https://server8.mp3quran.net/afs/001.mp3", duration: "0:47" },
+                { name: "سورة البقرة - سعد الغامدي", url: "https://server8.mp3quran.net/s_gmd/002.mp3", duration: "2:01:23" },
+                { name: "سورة الكهف - عبد الرحمن السديس", url: "https://server6.mp3quran.net/sds/018.mp3", duration: "1:20:45" },
+                { name: "سورة الرحمن - ماهر المعيقلي", url: "https://server6.mp3quran.net/maher/055.mp3", duration: "14:32" },
+                { name: "سورة الملك - فارس عباد", url: "https://server8.mp3quran.net/frs_a/067.mp3", duration: "17:21" },
+                { name: "سورة يس - إدريس أبكر", url: "https://server10.mp3quran.net/abkr/036.mp3", duration: "21:45" },
+                { name: "سورة الواقعة - سعد الغامدي", url: "https://server8.mp3quran.net/s_gmd/056.mp3", duration: "18:32" },
+                { name: "سورة الإخلاص - مشاري العفاسي", url: "https://server8.mp3quran.net/afs/112.mp3", duration: "0:45" },
+                { name: "سورة الكوثر - ماهر المعيقلي", url: "https://server6.mp3quran.net/maher/108.mp3", duration: "0:32" },
+                { name: "سورة الكافرون - إدريس أبكر", url: "https://server10.mp3quran.net/abkr/109.mp3", duration: "0:48" },
+                { name: "سورة الإخلاص - فارس عباد", url: "https://server8.mp3quran.net/frs_a/112.mp3", duration: "0:42" },
+                { name: "سورة الفلق - سعد الغامدي", url: "https://server8.mp3quran.net/s_gmd/113.mp3", duration: "0:38" },
+                { name: "سورة الناس - مشاري العفاسي", url: "https://server8.mp3quran.net/afs/114.mp3", duration: "0:41" }
+            ],
+            stories: [
+                {
+                    title: "قصة النبي يونس في بطن الحوت",
+                    content: "عاش النبي يونس في قومه يدعوهم إلى عبادة الله وحده، لكنهم استمروا في كفرهم وعنادهم. فغضب يونس وتركهم دون أن ينتظر أمر الله. ركب سفينة في البحر فهاج البحر وكادت السفينة أن تغرق. ألقى الركاب القرعة لتخفيف الحمل، فوقع الاختيار على يونس. ألقى نفسه في البحر فالتقمه حوت كبير. في بطن الحوت، دعا يونس ربه: 'لا إله إلا أنت سبحانك إني كنت من الظالمين'. فاستجاب الله له وأمر الحوت أن يلقيه على الشاطئ. وعاد يونس إلى قومه فوجدهم قد آمنوا بالله.",
+                    audio: "https://example.com/story1.mp3"
+                },
+                {
+                    title: "قصة أصحاب الكهف",
+                    content: "كان هناك مجموعة من الشباب المؤمنين يعيشون في قرية كافرة. خشي هؤلاء الشباب على إيمانهم من الفتنة، فقرروا الهرب من القرية والاختباء في كهف في الجبل. ناموا في الكهف لمدة 309 سنوات، ثم أيقظهم الله. عندما أرسلوا أحدهم إلى القرية لشراء الطعام، تفاجأ الناس به وبالقصة العجيبة. كانت هذه المعجزة آية من آيات الله تثبت قدرته على إحياء الموتى.",
+                    audio: "https://example.com/story2.mp3"
+                },
+                {
+                    title: "قصة سيدنا إبراهيم والخليل",
+                    content: "عاش النبي إبراهيم في قوم يعبدون الأصنام. حاول إقناعهم بترك عبادة الأصنام وعبادة الله وحده، لكنهم رفضوا. في يوم من الأيام، عندما خرج القوم للاحتفال، دخل إبراهيم إلى معبد الأصنام وحطمها جميعًا إلا كبيرهم. عندما عاد القوم وسألوه عمن فعل هذا، قال لهم: 'اسألوا كبيرهم هذا إن كان ينطق'. أدرك القوم خطأهم لكنهم ألقوا بإبراهيم في النار. أمر الله النار أن تكون بردًا وسلامًا على إبراهيم، فنجى بإذن الله.",
+                    audio: "https://example.com/story3.mp3"
+                }
+            ]
+        };
+
+        // App State
+        const state = {
+            currentPage: 'home',
+            currentAzkarCategory: 0,
+            tasbeehCount: 0,
+            currentDhikr: 'سبحان الله',
+            dhikrOptions: ['سبحان الله', 'الحمد لله', 'الله أكبر', 'لا إله إلا الله'],
+            currentAudioIndex: -1,
+            isPlaying: false,
+            prayers: JSON.parse(localStorage.getItem('prayers')) || [],
+            azkarProgress: JSON.parse(localStorage.getItem('azkarProgress')) || {}
+        };
+
+        // DOM Elements
+        const pages = document.querySelectorAll('.page');
+        const navItems = document.querySelectorAll('.nav-item');
+        const actionButtons = document.querySelectorAll('.action-btn');
+        const themeToggle = document.getElementById('themeToggle');
+        const prayerTimesContainer = document.getElementById('prayerTimes');
+        const cityInput = document.getElementById('cityInput');
+        const prayerSubmit = document.getElementById('prayerSubmit');
+        const azkarCategoriesContainer = document.getElementById('azkarCategories');
+        const azkarListContainer = document.getElementById('azkarList');
+        const tasbeehBtn = document.getElementById('tasbeehBtn');
+        const tasbeehCount = document.getElementById('tasbeehCount');
+        const resetTasbeeh = document.getElementById('resetTasbeeh');
+        const changeDhikr = document.getElementById('changeDhikr');
+        const prayText = document.getElementById('prayText');
+        const praySubmit = document.getElementById('praySubmit');
+        const prayersList = document.getElementById('prayersList');
+        const telawatList = document.getElementById('telawatList');
+        const telawatSearch = document.getElementById('telawatSearch');
+        const audioPlayer = document.getElementById('audioPlayer');
+        const audioElement = document.getElementById('audioElement');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const playerTitle = document.getElementById('playerTitle');
+        const progress = document.getElementById('progress');
+        const storiesList = document.getElementById('storiesList');
+
+        // Initialize App
+        function initApp() {
+            // Set initial content
+            document.getElementById('ayahText').textContent = data.ayah.text;
+            document.getElementById('ayahSource').textContent = data.ayah.source;
+            document.getElementById('hadithText').textContent = data.hadith.text;
+            document.getElementById('hadithSource').textContent = data.hadith.source;
+            
+            // Load saved tasbeeh count
+            state.tasbeehCount = parseInt(localStorage.getItem('tasbeehCount')) || 0;
+            tasbeehCount.textContent = state.tasbeehCount;
+            tasbeehBtn.textContent = state.currentDhikr;
+            
+            // Initialize azkar
+            initAzkar();
+            
+            // Initialize prayer times
+            initPrayerTimes();
+            
+            // Initialize telawat
+            initTelawat();
+            
+            // Initialize stories
+            initStories();
+            
+            // Initialize prayers list
+            renderPrayers();
+            
+            // Check for dark mode preference
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                document.body.classList.add('dark-mode');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+        }
+
+        // Navigation
+        function navigateToPage(pageId) {
+            // Hide all pages
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Show target page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Update nav items
+            navItems.forEach(item => {
+                if (item.getAttribute('data-page') === pageId) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+            
+            // Update state
+            state.currentPage = pageId;
+            
+            // Special handling for audio player
+            if (pageId !== 'telawat') {
+                audioPlayer.style.display = 'none';
+                if (!audioElement.paused) {
+                    audioElement.pause();
+                    playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+                    state.isPlaying = false;
+                }
+            } else if (state.currentAudioIndex !== -1) {
+                audioPlayer.style.display = 'block';
+            }
+        }
+
+        // Initialize Azkar
+        function initAzkar() {
+            // Create category buttons
+            data.azkar.forEach((category, index) => {
+                const button = document.createElement('div');
+                button.className = `azkar-category ${index === 0 ? 'active' : ''}`;
+                button.textContent = category.title;
+                button.addEventListener('click', () => {
+                    // Update active category
+                    document.querySelectorAll('.azkar-category').forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    
+                    // Render azkar for this category
+                    renderAzkar(index);
+                });
+                azkarCategoriesContainer.appendChild(button);
+            });
+            
+            // Render initial azkar
+            renderAzkar(0);
+        }
+
+        // Render Azkar
+        function renderAzkar(categoryIndex) {
+            azkarListContainer.innerHTML = '';
+            state.currentAzkarCategory = categoryIndex;
+            
+            const category = data.azkar[categoryIndex];
+            
+            category.items.forEach((item, itemIndex) => {
+                const azkarItem = document.createElement('div');
+                azkarItem.className = 'azkar-item';
+                
+                const key = `${categoryIndex}-${itemIndex}`;
+                const currentCount = state.azkarProgress[key] || 0;
+                
+                azkarItem.innerHTML = `
+                    <div class="azkar-text">${item.text}</div>
+                    <div class="azkar-count">
+                        <button class="count-btn" data-key="${key}">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                        <div class="count-number">${currentCount}/${item.count}</div>
+                    </div>
+                `;
+                
+                azkarListContainer.appendChild(azkarItem);
+            });
+            
+            // Add event listeners to count buttons
+            document.querySelectorAll('.count-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const key = this.getAttribute('data-key');
+                    incrementAzkarCount(key);
+                });
+            });
+        }
+
+        // Increment Azkar Count
+        function incrementAzkarCount(key) {
+            if (!state.azkarProgress[key]) {
+                state.azkarProgress[key] = 0;
+            }
+            
+            const categoryIndex = parseInt(key.split('-')[0]);
+            const itemIndex = parseInt(key.split('-')[1]);
+            const maxCount = data.azkar[categoryIndex].items[itemIndex].count;
+            
+            if (state.azkarProgress[key] < maxCount) {
+                state.azkarProgress[key]++;
+                localStorage.setItem('azkarProgress', JSON.stringify(state.azkarProgress));
+                
+                // Update UI
+                const countElement = document.querySelector(`.count-btn[data-key="${key}"]`).nextElementSibling;
+                countElement.textContent = `${state.azkarProgress[key]}/${maxCount}`;
+                
+                // Play click sound
+                playClickSound();
+            }
+        }
+
+        // Initialize Prayer Times
+        function initPrayerTimes() {
+            // Default prayer times (in a real app, this would be calculated based on location)
+            const defaultPrayerTimes = [
+                { name: 'الفجر', time: '4:30', icon: 'fas fa-moon' },
+                { name: 'الشروق', time: '5:45', icon: 'fas fa-sun' },
+                { name: 'الظهر', time: '12:00', icon: 'fas fa-sun' },
+                { name: 'العصر', time: '3:15', icon: 'fas fa-sun' },
+                { name: 'المغرب', time: '6:30', icon: 'fas fa-sun' },
+                { name: 'العشاء', time: '8:00', icon: 'fas fa-moon' }
+            ];
+            
+            renderPrayerTimes(defaultPrayerTimes);
+        }
+
+        // Render Prayer Times
+        function renderPrayerTimes(prayerTimes) {
+            prayerTimesContainer.innerHTML = '';
+            
+            prayerTimes.forEach(prayer => {
+                const prayerElement = document.createElement('div');
+                prayerElement.className = 'prayer-time';
+                prayerElement.innerHTML = `
+                    <div class="prayer-name">${prayer.name}</div>
+                    <div class="prayer-hour">${prayer.time}</div>
+                    <button class="azan-btn" data-prayer="${prayer.name}">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                `;
+                prayerTimesContainer.appendChild(prayerElement);
+            });
+            
+            // Add event listeners to azan buttons
+            document.querySelectorAll('.azan-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const prayerName = this.getAttribute('data-prayer');
+                    playAzan(prayerName);
+                });
+            });
+        }
+
+        // Play Azan
+        function playAzan(prayerName) {
+            const azanAudio = new Audio('https://www.islamcan.com/audio/adhan/azan1.mp3');
+            azanAudio.play();
+            
+            // Show notification
+            showNotification(`أذان ${prayerName}`);
+        }
+
+        // Initialize Telawat
+        function initTelawat() {
+            renderTelawat(data.telawat);
+            
+            // Search functionality
+            telawatSearch.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const filteredTelawat = data.telawat.filter(telawa => 
+                    telawa.name.toLowerCase().includes(searchTerm)
+                );
+                renderTelawat(filteredTelawat);
+            });
+        }
+
+        // Render Telawat
+        function renderTelawat(telawatListData) {
+            telawatList.innerHTML = '';
+            
+            telawatListData.forEach((telawa, index) => {
+                const telawaElement = document.createElement('div');
+                telawaElement.className = `telawat-item ${index === state.currentAudioIndex ? 'active' : ''}`;
+                telawaElement.innerHTML = `
+                    <div class="telawat-name">${telawa.name}</div>
+                    <div class="telawat-duration">${telawa.duration}</div>
+                `;
+                telawaElement.addEventListener('click', () => playTelawa(index));
+                telawatList.appendChild(telawaElement);
+            });
+        }
+
+        // Play Telawa
+        function playTelawa(index) {
+            state.currentAudioIndex = index;
+            const telawa = data.telawat[index];
+            
+            // Update player UI
+            playerTitle.textContent = telawa.name;
+            audioElement.src = telawa.url;
+            audioPlayer.style.display = 'block';
+            
+            // Update active item in list
+            document.querySelectorAll('.telawat-item').forEach((item, i) => {
+                if (i === index) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+            
+            // Play audio
+            audioElement.play();
+            playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            state.isPlaying = true;
+        }
+
+        // Initialize Stories
+        function initStories() {
+            storiesList.innerHTML = '';
+            
+            data.stories.forEach(story => {
+                const storyElement = document.createElement('div');
+                storyElement.className = 'story-item';
+                storyElement.innerHTML = `
+                    <h4 class="story-title">${story.title}</h4>
+                    <div class="story-content">${story.content}</div>
+                    ${story.audio ? `<button class="story-audio"><i class="fas fa-play"></i> استمع للقصة</button>` : ''}
+                `;
+                storiesList.appendChild(storyElement);
+                
+                // Add event listener to audio button if exists
+                const audioBtn = storyElement.querySelector('.story-audio');
+                if (audioBtn) {
+                    audioBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        // In a real app, this would play the story audio
+                        showNotification('سيتم تشغيل القصة قريبًا');
+                    });
+                }
+            });
+        }
+
+        // Render Prayers
+        function renderPrayers() {
+            prayersList.innerHTML = '';
+            
+            if (state.prayers.length === 0) {
+                prayersList.innerHTML = '<p style="text-align: center; color: var(--text-light);">لا توجد أدعية بعد</p>';
+                return;
+            }
+            
+            state.prayers.forEach((prayer, index) => {
+                const prayerElement = document.createElement('div');
+                prayerElement.className = 'prayer-item';
+                prayerElement.innerHTML = `
+                    <div class="prayer-content">${prayer.text}</div>
+                    <div class="prayer-meta">
+                        <span>${formatDate(prayer.date)}</span>
+                        <button class="amen-btn" data-index="${index}">
+                            <i class="fas fa-heart"></i>
+                            <span>آمين ❤️ (${prayer.amenCount || 0})</span>
+                        </button>
+                    </div>
+                `;
+                prayersList.appendChild(prayerElement);
+            });
+            
+            // Add event listeners to amen buttons
+            document.querySelectorAll('.amen-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    incrementAmenCount(index);
+                });
+            });
+        }
+
+        // Increment Amen Count
+        function incrementAmenCount(index) {
+            if (!state.prayers[index].amenCount) {
+                state.prayers[index].amenCount = 0;
+            }
+            
+            state.prayers[index].amenCount++;
+            localStorage.setItem('prayers', JSON.stringify(state.prayers));
+            renderPrayers();
+            
+            // Play click sound
+            playClickSound();
+        }
+
+        // Format Date
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('ar-EG', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+
+        // Play Click Sound
+        function playClickSound() {
+            const clickSound = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-interface-click-tone-2577.mp3');
+            clickSound.volume = 0.3;
+            clickSound.play();
+        }
+
+        // Show Notification
+        function showNotification(message) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 80px;
+                right: 20px;
+                background: var(--primary-
