@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* CSS Variables */
         :root {
@@ -768,6 +769,16 @@
                 font-size: 3rem;
             }
         }
+
+        /* Utility Classes */
+        .text-muted {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .hidden {
+            display: none !important;
+        }
     </style>
 </head>
 <body>
@@ -898,7 +909,7 @@
                     <!-- Telawat will be generated here -->
                 </div>
             </div>
-            <div class="audio-player" id="audioPlayer" style="display: none;">
+            <div class="audio-player" id="audioPlayer">
                 <div class="player-controls">
                     <button class="player-btn" id="prevBtn">
                         <i class="fas fa-backward"></i>
@@ -910,7 +921,7 @@
                         <i class="fas fa-forward"></i>
                     </button>
                     <div class="player-info">
-                        <div class="player-title" id="playerTitle">اسم التلاوة</div>
+                        <div class="player-title" id="playerTitle">اختر تلاوة للبدء</div>
                         <div class="progress-bar">
                             <div class="progress" id="progress"></div>
                         </div>
@@ -960,9 +971,6 @@
             <p>By SantaDevX | @santamodder | واتس: 01500461923 | Discord: https://discord.gg/YdgenTvN</p>
         </div>
     </footer>
-
-    <!-- Font Awesome Icons -->
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
     <script>
         // Data (in a real app, this would be in separate JSON files)
@@ -1114,6 +1122,20 @@
                 document.body.classList.add('dark-mode');
                 themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
             }
+            
+            // Initialize audio player
+            initAudioPlayer();
+        }
+
+        // Initialize Audio Player
+        function initAudioPlayer() {
+            // Initially hide the audio player
+            audioPlayer.style.display = 'none';
+            
+            // Set up audio event listeners
+            audioElement.addEventListener('timeupdate', updateProgressBar);
+            audioElement.addEventListener('ended', handleAudioEnded);
+            audioElement.addEventListener('error', handleAudioError);
         }
 
         // Navigation
@@ -1330,9 +1352,39 @@
             });
             
             // Play audio
-            audioElement.play();
-            playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-            state.isPlaying = true;
+            audioElement.play().then(() => {
+                playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                state.isPlaying = true;
+            }).catch(error => {
+                console.error('Error playing audio:', error);
+                showNotification('حدث خطأ في تشغيل التلاوة');
+            });
+        }
+
+        // Update Progress Bar
+        function updateProgressBar() {
+            if (audioElement.duration) {
+                const percent = (audioElement.currentTime / audioElement.duration) * 100;
+                progress.style.width = percent + '%';
+            }
+        }
+
+        // Handle Audio Ended
+        function handleAudioEnded() {
+            playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+            state.isPlaying = false;
+            
+            // Auto-play next if available
+            if (state.currentAudioIndex < data.telawat.length - 1) {
+                setTimeout(() => {
+                    playTelawa(state.currentAudioIndex + 1);
+                }, 1000);
+            }
+        }
+
+        // Handle Audio Error
+        function handleAudioError() {
+            showNotification('حدث خطأ في تشغيل التلاوة');
         }
 
         // Initialize Stories
@@ -1434,4 +1486,160 @@
                 position: fixed;
                 top: 80px;
                 right: 20px;
-                background: var(--primary-
+                background: var(--primary-color);
+                color: white;
+                padding: 12px 20px;
+                border-radius: var(--radius);
+                box-shadow: var(--shadow);
+                z-index: 1000;
+                transition: var(--transition);
+                max-width: 300px;
+            `;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', initApp);
+
+        // Navigation event listeners
+        navItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const pageId = this.getAttribute('data-page');
+                navigateToPage(pageId);
+            });
+        });
+
+        actionButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const pageId = this.getAttribute('data-page');
+                navigateToPage(pageId);
+            });
+        });
+
+        // Theme toggle
+        themeToggle.addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            
+            if (document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('darkMode', 'enabled');
+                this.innerHTML = '<i class="fas fa-sun"></i>';
+            } else {
+                localStorage.setItem('darkMode', 'disabled');
+                this.innerHTML = '<i class="fas fa-moon"></i>';
+            }
+        });
+
+        // Prayer times form
+        prayerSubmit.addEventListener('click', function() {
+            const city = cityInput.value.trim();
+            if (city) {
+                // In a real app, this would fetch prayer times for the city
+                showNotification(`سيتم عرض أوقات الصلاة لـ ${city} قريبًا`);
+                // For now, we'll just use the default times
+                initPrayerTimes();
+            } else {
+                showNotification('يرجى إدخال اسم المدينة');
+            }
+        });
+
+        // Tasbeeh functionality
+        tasbeehBtn.addEventListener('click', function() {
+            state.tasbeehCount++;
+            tasbeehCount.textContent = state.tasbeehCount;
+            localStorage.setItem('tasbeehCount', state.tasbeehCount);
+            
+            // Play click sound
+            playClickSound();
+        });
+
+        resetTasbeeh.addEventListener('click', function() {
+            state.tasbeehCount = 0;
+            tasbeehCount.textContent = state.tasbeehCount;
+            localStorage.setItem('tasbeehCount', state.tasbeehCount);
+            
+            // Play click sound
+            playClickSound();
+        });
+
+        changeDhikr.addEventListener('click', function() {
+            const currentIndex = state.dhikrOptions.indexOf(state.currentDhikr);
+            const nextIndex = (currentIndex + 1) % state.dhikrOptions.length;
+            state.currentDhikr = state.dhikrOptions[nextIndex];
+            tasbeehBtn.textContent = state.currentDhikr;
+            
+            // Play click sound
+            playClickSound();
+        });
+
+        // Pray for me functionality
+        praySubmit.addEventListener('click', function() {
+            const prayerText = prayText.value.trim();
+            if (prayerText) {
+                const newPrayer = {
+                    text: prayerText,
+                    date: new Date().toISOString(),
+                    amenCount: 0
+                };
+                
+                state.prayers.unshift(newPrayer);
+                localStorage.setItem('prayers', JSON.stringify(state.prayers));
+                renderPrayers();
+                
+                // Clear textarea
+                prayText.value = '';
+                
+                // Show notification
+                showNotification('تم إرسال دعائك بنجاح');
+                
+                // Play click sound
+                playClickSound();
+            } else {
+                showNotification('يرجى كتابة دعاء');
+            }
+        });
+
+        // Audio player functionality
+        playPauseBtn.addEventListener('click', function() {
+            if (audioElement.paused) {
+                audioElement.play().then(() => {
+                    this.innerHTML = '<i class="fas fa-pause"></i>';
+                    state.isPlaying = true;
+                }).catch(error => {
+                    console.error('Error playing audio:', error);
+                    showNotification('حدث خطأ في تشغيل التلاوة');
+                });
+            } else {
+                audioElement.pause();
+                this.innerHTML = '<i class="fas fa-play"></i>';
+                state.isPlaying = false;
+            }
+        });
+
+        prevBtn.addEventListener('click', function() {
+            if (state.currentAudioIndex > 0) {
+                playTelawa(state.currentAudioIndex - 1);
+            } else {
+                showNotification('هذه أول تلاوة في القائمة');
+            }
+        });
+
+        nextBtn.addEventListener('click', function() {
+            if (state.currentAudioIndex < data.telawat.length - 1) {
+                playTelawa(state.currentAudioIndex + 1);
+            } else {
+                showNotification('هذه آخر تلاوة في القائمة');
+            }
+        });
+    </script>
+</body>
+    </html>
